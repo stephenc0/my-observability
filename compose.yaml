@@ -1,0 +1,339 @@
+services:
+
+  grafana:
+      image: grafana/grafana
+      container_name: grafana
+      volumes:
+       - ~/Docker/Projects/my-observability/grafana-data/:/var/lib/grafana:rw
+       - ~/Docker/Projects/my-observability/grafana-provisioning/:/etc/grafana/provisioning:rw
+      environment: 
+        GF_SERVER_HTTP_PORT: 3000
+      ports: 
+       - "3000:3000"
+      networks:
+       - internal
+      restart: always
+
+  prometheus:
+      image: prom/prometheus:latest
+      container_name: prometheus
+      volumes:
+       - ~/Docker/Projects/my-observability/prometheus-data/:/prometheus:rw
+       - ~/Docker/Projects/my-observability/prometheus-config/:/etc/prometheus
+      ports:
+       - "9090:9090"
+      networks:
+       - internal
+      restart: always
+
+  node_exporter:
+      image: stephencarnold/prom-node-exporter:latest
+      container_name: node_exporter
+      volumes:
+        - /:/host:ro,rshared
+      command: '--path.rootfs=/host'
+      pid: host
+      networks:
+      - internal
+      restart: always
+
+  cadvisor:
+      image: stephencarnold/cadvisor:latest
+      container_name: cadvisor
+      volumes:
+        - /:/rootfs:ro,rshared
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro,rshared
+        - /dev/disk/:/dev/disk:ro
+      ports:
+        - "8098:8098"
+      command:
+        - '-port=8098'
+      devices:
+        - /dev/kmsg
+      privileged: true
+      networks:
+       - internal
+      restart: always
+  
+  dsloth:
+      image: stephencarnold/dsloth:latest
+      container_name: dsloth
+      volumes:
+        - ./sloth-data:/workdir/sloth-data
+        - ./prometheus-config:/workdir/prometheus-config
+      command: generate -i /workdir/sloth-data/slothtemplate.yml -o /workdir/sloth-data/slothrules.yml
+      networks:
+       - internal
+      restart: no
+
+#  jenkins:
+#      image: jenkins/jenkins
+#      container_name: jenkins
+#      volumes:
+#       - ~/Docker/Projects/my-observability/jenkins-data/:/var/jenkins_home:rw
+#      ports: 
+#       - "8080:8080"
+#      networks:
+#       - internal
+#      restart: always
+#      tty: true
+#      stdin_open: true
+
+#  jenkins_slave:
+#      image: jenkins/inbound-agent
+#      container_name: jenkins-slave
+#      volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       - /usr/bin/docker:/usr/bin/docker
+#       - $HOME/jnlp_slave:/var/jenkins_home
+#      networks:
+#       - internal
+#      command: -url http://jenkins:8080 -secret 3dea3d0fe540fa98be181253740e3f4a1c1e23f529d5e038cf15a78161b93370 -name "jenkins-slave" -webSocket -workDir "/var/jenkins_home"
+#      depends_on:
+#        - jenkins
+#      restart: always
+
+  mockclient:
+      image: stephencarnold/testclient
+      container_name: mockclient
+      environment:
+        BASE_URL: http://mockapi:8082
+        SUCCESS_RATE: 95
+        REQUESTS_PER_SECOND: 100
+        VARIANCE: 0.5
+        SUCCESS_ENDPOINT: /success
+        FAIL_ENDPOINT: /fail
+        DAY_LOAD_FACTOR: 0.8  # Peak load variation during day
+        WEEK_LOAD_FACTOR: 0 # Peak load variation during week
+      networks:
+        - internal
+      restart: always
+
+  mockclientlow:
+      image: stephencarnold/testclient
+      container_name: mockclientlow
+      environment:
+        BASE_URL: http://mockapilow:8083
+        SUCCESS_RATE: 86
+        REQUESTS_PER_SECOND: 100
+        VARIANCE: 0.995
+        SUCCESS_ENDPOINT: /success
+        FAIL_ENDPOINT: /fail
+        DAY_LOAD_FACTOR: 0.8
+        WEEK_LOAD_FACTOR: 0
+      networks:
+        - internal
+      restart: always
+
+  mockclienthigh:
+      image: stephencarnold/testclient
+      container_name: mockclienthigh
+      environment:
+        BASE_URL: http://mockapihigh:8084
+        SUCCESS_RATE: 99.9
+        REQUESTS_PER_SECOND: 100
+        VARIANCE: 0.01
+        SUCCESS_ENDPOINT: /success
+        FAIL_ENDPOINT: /fail
+        DAY_LOAD_FACTOR: 0.8
+        WEEK_LOAD_FACTOR: 0
+      networks:
+        - internal
+      restart: always
+
+#  mockclient2:
+#      image: stephencarnold/testclient
+#      container_name: mockclient2
+#      environment:
+#        BASE_URL: http://mockapi:8082
+#        SUCCESS_RATE: 95
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.5
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8  # Peak load variation during day
+#        WEEK_LOAD_FACTOR: 0 # Peak load variation during week
+#      networks:
+#        - internal
+#      restart: always
+#
+#  mockclientlow2:
+#      image: stephencarnold/testclient
+#      container_name: mockclientlow2
+#      environment:
+#        BASE_URL: http://mockapilow:8083
+#        SUCCESS_RATE: 86
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.995
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8
+#        WEEK_LOAD_FACTOR: 0
+#      networks:
+#        - internal
+#      restart: always
+#
+#  mockclienthigh2:
+#      image: stephencarnold/testclient
+#      container_name: mockclienthigh2
+#      environment:
+#        BASE_URL: http://mockapihigh:8084
+#        SUCCESS_RATE: 99.9
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.01
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8
+#        WEEK_LOAD_FACTOR: 0
+#      networks:
+#        - internal
+#      restart: always
+#
+#  mockclient3:
+#      image: stephencarnold/testclient
+#      container_name: mockclient3
+#      environment:
+#        BASE_URL: http://mockapi:8082
+#        SUCCESS_RATE: 95
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.5
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8  # Peak load variation during day
+#        WEEK_LOAD_FACTOR: 0 # Peak load variation during week
+#      networks:
+#        - internal
+#      restart: always
+#
+#  mockclientlow3:
+#      image: stephencarnold/testclient
+#      container_name: mockclientlow3
+#      environment:
+#        BASE_URL: http://mockapilow:8083
+#        SUCCESS_RATE: 86
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.995
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8
+#        WEEK_LOAD_FACTOR: 0
+#      networks:
+#        - internal
+#      restart: always
+#
+#  mockclienthigh3:
+#      image: stephencarnold/testclient
+#      container_name: mockclienthigh3
+#      environment:
+#        BASE_URL: http://mockapihigh:8084
+#        SUCCESS_RATE: 99.9
+#        REQUESTS_PER_SECOND: 100
+#        VARIANCE: 0.01
+#        SUCCESS_ENDPOINT: /success
+#        FAIL_ENDPOINT: /fail
+#        DAY_LOAD_FACTOR: 0.8
+#        WEEK_LOAD_FACTOR: 0
+#      networks:
+#        - internal
+#      restart: always
+
+  mockapi:
+      image: stephencarnold/testapi
+      container_name: mockapi
+      ports:
+        - "8082:8082"
+      command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8082"]
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8082/success"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+      environment:
+        BASE_LATENCY: 0.042    # 100ms base latency
+      networks:
+       - internal
+      restart: always
+
+  mockapilow:
+      image: stephencarnold/testapi
+      container_name: mockapilow
+      ports:
+        - "8083:8083"
+      command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8083"]
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8083/success"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+      environment:
+        BASE_LATENCY: 0.045    # 20ms base latency
+      networks:
+       - internal
+      restart: always
+
+  mockapihigh:
+      image: stephencarnold/testapi
+      container_name: mockapihigh
+      ports:
+        - "8084:8084"
+      command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8084"]
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8084/success"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+      environment:
+        BASE_LATENCY: 0.03   # 100ms base latency
+      networks:
+       - internal
+      restart: always
+
+
+# file-server:
+#     image: stephencarnold/alpine
+#     container_name: file-server
+#     ports:
+#      - "8000:8000"
+#     networks:
+#      - internal
+#     tty: true
+#     stdin_open: true
+
+#  gitlab-web:
+#      image: 'suryakant24/gitlab-ce-arm64'
+#      hostname: 'localhost'
+#      container_name: gitlab-ce
+#      environment:
+#        GITLAB_OMNIBUS_CONFIG: |
+#          external_url 'http://localhost'
+#      ports:
+#        - '8081:80'
+#        - '8443:443'
+#        - '2222:22'
+#      volumes:
+#        - '/srv/gitlab/config:/etc/gitlab'
+#        - '/srv/gitlab/logs:/var/log/gitlab'
+#        - '/srv/gitlab/data:/var/opt/gitlab'
+#      networks:
+#       - internal
+#      restart: always
+#      tty: true
+#      stdin_open: true
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  grafana-data:
+    driver: local
+  grafana-provisioning:
+    driver: local
+  prometheus-data:
+    driver: local
+#  jenkins-data:
+#    driver: local
+#  terraform-data:
+#    driver: local

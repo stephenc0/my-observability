@@ -1,0 +1,161 @@
+version: "prometheus/v1"
+service: "mockapi"
+labels:
+  owner: "stephen"
+  repo: "stephencarnold/mockapi"
+  tier: "1"
+slos:
+  # We allow failing (5xx and 429) 1 request every 1000 requests (99.9%).
+  - name: "requests-availability"
+    objective: 95
+    description: "Common SLO based on availability for HTTP request responses."
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapi:8082", status=~"([5|4].{2})"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapi:8082"}[{{.window}}]))
+    alerting:
+      name: mockapiHighErrorRate
+      labels:
+        category: "availability"
+      annotations:
+        # Overwrite default Sloth SLO alert summmary on ticket and page alerts.
+        summary: "High error rate on 'mockapi' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+  - name: "requests-latency"
+    objective: 95
+    description: "SLO based on requests completing within 5ms"
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="0.05"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}]))
+    alerting:
+      name: mockapiHighLatency
+      labels:
+        category: "latency"
+      annotations:
+        summary: "High latency on 'mockapi' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+
+---
+
+version: "prometheus/v1"
+service: "mockapiLow"
+labels:
+  owner: "stephen"
+  repo: "stephencarnold/mockapi"
+  tier: "1"
+slos:
+  # We allow failing (5xx and 429) 1 request every 1000 requests (99.9%).
+  - name: "requests-availability"
+    objective: 90
+    description: "Common SLO based on availability for HTTP request responses."
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapilow:8083", status=~"([5|4].{2})"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapilow:8083"}[{{.window}}]))
+    alerting:
+      name: mockapiLowHighErrorRate
+      labels:
+        category: "availability"
+      annotations:
+        # Overwrite default Sloth SLO alert summmary on ticket and page alerts.
+        summary: "High error rate on 'mockapiLow' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+  - name: "requests-latency"
+    objective: 95
+    description: "SLO based on requests completing within 5ms"
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="0.05"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}]))
+    alerting:
+      name: mockapiHighLatency
+      labels:
+        category: "latency"
+      annotations:
+        summary: "High latency on 'mockapi' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+
+
+---
+
+version: "prometheus/v1"
+service: "mockapiHigh"
+labels:
+  owner: "stephen"
+  repo: "stephencarnold/mockapi"
+  tier: "1"
+slos:
+  # We allow failing (5xx and 429) 1 request every 1000 requests (99.9%).
+  - name: "requests-availability"
+    objective: 99
+    description: "Common SLO based on availability for HTTP request responses."
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapihigh:8084", status=~"([5|4].{2})"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_count{endpoint!="/metrics", instance="mockapihigh:8084"}[{{.window}}]))
+    alerting:
+      name: mockapiHighHighErrorRate
+      labels:
+        category: "availability"
+      annotations:
+        # Overwrite default Sloth SLO alert summmary on ticket and page alerts.
+        summary: "High error rate on 'mockapiHigh' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+  - name: "requests-latency"
+    objective: 95
+    description: "SLO based on requests completing within 5ms"
+    sli:
+      events:
+        error_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="0.05"}[{{.window}}]))
+        total_query: sum(increase(http_request_duration_seconds_bucket{endpoint!="/metrics", instance="mockapi:8082", le="+Inf"}[{{.window}}]))
+    alerting:
+      name: mockapiHighLatency
+      labels:
+        category: "latency"
+      annotations:
+        summary: "High latency on 'mockapi' requests responses"
+      page_alert:
+        labels:
+          severity: pageteam
+          routing_key: myteam
+      ticket_alert:
+        labels:
+          severity: "slack"
+          slack_channel: "#alerts-myteam"
+ 
