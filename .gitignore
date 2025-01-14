@@ -5,3 +5,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+builds/
+jenkins-data/
+prometheus-data/
+grafana-data/
+grafana-provisioning
