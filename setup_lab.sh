@@ -3,7 +3,6 @@
 # Create directories for the observability project
 mkdir -p grafana-data
 mkdir -p grafana-provisioning
-mkdir -p terraform-data
 mkdir -p jenkins-data
 
 # Start Docker containers in detached mode
