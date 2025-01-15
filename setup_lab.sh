@@ -10,7 +10,7 @@ check_service() {
     echo " i Checking $service health..."
     while [ $attempt -le $max_attempts ]; do
         if curl -s -f "$url" >/dev/null 2>&1; then
-            echo " ✓ $service is up and running"
+            echo " ✓ $service OK!"
             return 0
         fi
         echo " → Waiting for $service... (attempt $attempt/$max_attempts)"
