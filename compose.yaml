@@ -19,7 +19,7 @@ services:
       container_name: prometheus
       volumes:
        - ~/Docker/Projects/my-observability/prometheus-data/:/prometheus:rw
-       - ~/Docker/Projects/my-observability/prometheus-config/:/etc/prometheus
+       - ~/Docker/Projects/my-observability/prometheus-config/:/etc/prometheus:rw
       ports:
        - "9090:9090"
       networks:
