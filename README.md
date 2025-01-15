@@ -21,3 +21,23 @@ urls as configured will be:
 
 grafana: http://localhost:3000/  
 prom: http://localhost:9090/
+
+## mockClient
+clients support configuration of:  
+request rate  
+parameter: REQUEST_RATE, int, 0-n  
+  
+success rate  
+parameter SUCCESS_RATE, percent, 0-100  
+  
+success rate random variance  
+parameter VARIANCE, percent (x100), 0.000-1.000  
+  
+simulated daily and weekly seasonality  
+parameter DAY_LOAD_FACTOR,, magnitude (sigmoid), 0.000-1.000  
+parameter WEEK_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
+
+## mockAPI
+api endpoints support configuration of:  
+simulated latency 
+parameter: BASE_LATENCY, int, 0.0-n
