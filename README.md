@@ -4,9 +4,8 @@ Configuration of mock API endpoints and clients is done within compose.yaml
 Supported platforms: ARM64 on Mac silicon  
   
 ## setup
-run below commands:  
-chmod +x ./setup_lab.sh
-./setup_lab.sh 
+run below command:  
+chmod +x ./setup_lab.sh && ./setup_lab.sh 
 
 modify ./compose.yaml to suite your needs  
 modify ./prometheus-config/prometheus.yaml to suite your needs  
