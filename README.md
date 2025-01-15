@@ -62,7 +62,7 @@ parameter: REQUEST_RATE, int (requests/second), 0-n
 success rate  
 parameter SUCCESS_RATE, percent, 0-100  
   
-success/fail repeat chance
+success/fail repeat chance  
 parameter VARIANCE, percent (x100), 0.000-1.000  
   
 simulated daily and weekly seasonality  
