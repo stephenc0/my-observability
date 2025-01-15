@@ -9,7 +9,7 @@ builds/
 jenkins-data/
 prometheus-data/
 grafana-data/
-grafana-provisioning
+grafana-provisioning/
 sloth-data/slothrules.yml
 
 # Ignore everything in prometheus-config except prometheus.yml
