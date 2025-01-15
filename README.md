@@ -43,8 +43,12 @@ select "Prometheus"
 Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
   
-SLOTH default dashboards available [here](https://sloth.dev/introduction/dashboards/?h=dashboards)
+SLOTH default dashboards available [here (source)](https://sloth.dev/introduction/dashboards/?h=dashboards) or [here (local)](/dashboards)
 
+
+## guides
+[importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)
+[adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)
 
 ## defaults
 urls as configured in defaults will be:  
