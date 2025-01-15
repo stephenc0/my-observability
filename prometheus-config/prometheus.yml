@@ -35,6 +35,3 @@ scrape_configs:
       - targets: ['mockapihigh:8084']
 
 rule_files:
-  - mockapiHighrules.yml
-  - mockapiLowrules.yml
-  - mockapirules.yml

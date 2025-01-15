@@ -10,3 +10,7 @@ jenkins-data/
 prometheus-data/
 grafana-data/
 grafana-provisioning
+
+# Ignore everything in prometheus-config except prometheus.yml
+prometheus-config/*
+!prometheus-config/prometheus.yml
