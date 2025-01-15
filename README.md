@@ -35,7 +35,7 @@ create new grafana password
 add prometheus instance as a grafana datasource  
 Home >> Connections >> Data sources >> Add new datasource  
 select "Prometheus"  
-Connection: Prometheus server URL: http://localhost:9090  
+Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
 
 
