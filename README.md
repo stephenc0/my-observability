@@ -42,8 +42,8 @@ Home >> Connections >> Data sources >> Add new datasource
 select "Prometheus"  
 Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
-
-
+  
+SLOTH default dashboards available [here](https://sloth.dev/introduction/dashboards/?h=dashboards)
 
 
 ## defaults
