@@ -4,6 +4,7 @@
 mkdir -p grafana-data
 mkdir -p grafana-provisioning
 mkdir -p jenkins-data
+mkdir -p prometheus-data
 
 # Start Docker containers in detached mode
 docker compose up -d
