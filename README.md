@@ -53,9 +53,9 @@ SLOTH default dashboards available [here (source)](https://sloth.dev/introductio
 ### ./setup_lab.sh
 sets up lab:  
 
-creates directories  
-mark other scripts as executable  
-starts the docker compose project  
+- creates directories  
+- mark other scripts as executable  
+- starts the docker compose project  
 
 ### ./update_alerts.sh
 generates SLO rules and alerts:  
