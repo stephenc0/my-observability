@@ -44,8 +44,21 @@ cadvisor default dashboard available [here (source)](https://grafana.com/grafana
 
   
 ## guides
-[importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
-[adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
+[Importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
+[Adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
+[Intro to PromQL](https://grafana.com/blog/2020/02/04/introduction-to-promql-the-prometheus-query-language/)  
+[Querying Basics (prometheus)](https://prometheus.io/docs/prometheus/latest/querying/basics/)  
+[Query and Transform Data (grafana)](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/)  
+[SLOTH Getting Started](https://sloth.dev/introduction/)  
+[SLO as a Service using SLOTH](https://medium.com/@jibinrt/slo-as-a-service-using-sloth-87e45926bc94)  
+
+## lab web urls
+urls as configured in defaults will be:  
+
+grafana: http://localhost:3000/  
+prometheus: http://localhost:9090/
+
+***note: containers use container_name:port for communication within the same Docker network due to Docker's internal DNS, while the host (your computer) uses localhost:port to access container ports mapped to the host's ports***
 
 ## scripts
 ### ./setup_lab.sh
@@ -75,12 +88,6 @@ clears stored prometheus data:
 - stops prometheus container  
 - clears prometheus-data directory  
 - restarts prometheus container  
-  
-## defaults
-urls as configured in defaults will be:  
-
-grafana: http://localhost:3000/  
-prom: http://localhost:9090/
 
 ## mockClient
 python application that simulates API client traffic for use against the mockAPI endpoints.  
