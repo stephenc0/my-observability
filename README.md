@@ -25,26 +25,22 @@ Virtual Machine Type: VZ
   
   
 ## setup
-run below command:  
-chmod +x ./setup_lab.sh && ./setup_lab.sh 
-
-modify ./compose.yaml to suite your needs  
-modify ./prometheus-config/prometheus.yaml to suite your needs  
-
-modify ./sloth_data/slothtemplate.yml to suite your needs  
-run ./update_alerts.sh  
-
-login to grafana with default credentials ("admin":"admin")  
+1. run:  ```chmod +x ./setup_lab.sh && ./setup_lab.sh```
+2. modify **compose.yaml** to suite your needs
+3. modify **prometheus-config/prometheus.yaml** to suite your needs
+4. modify **sloth_data/slothtemplate.yml** to suite your needs
+5. run:  ```./update_alerts.sh```
+6. login to grafana with default credentials ("**admin**":"**admin**")  
 create new grafana password  
 
-add prometheus instance as a grafana datasource  
+7. add prometheus instance as a grafana datasource  
 Home >> Connections >> Data sources >> Add new datasource  
 select "Prometheus"  
 Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
   
 SLOTH default dashboards available [here (source)](https://sloth.dev/introduction/dashboards/?h=dashboards) or [here (local)](/dashboards)  
-cadvisor default dashboard available [here (source)](https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/) or [here (local)](/dashboards)  
+cadvisor default dashboard available [here (source)](https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/) or [here (local)](/dashboards/cadvisor_dashboard.json)  
 
   
 ## guides
@@ -97,7 +93,7 @@ parameter: REQUEST_RATE, int (requests/second), 0-n
 parameter SUCCESS_RATE, percent, 0-100  
   
 - success/fail repeat chance  
-parameter VARIANCE, percent (x100), 0.000-1.000  
+parameter VARIANCE, percent (x100), 0.00-1.00  
   
 - simulated daily and weekly seasonality  
 parameter DAY_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
