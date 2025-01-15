@@ -19,7 +19,7 @@ services:
       container_name: prometheus
       volumes:
        - ./prometheus-data/:/prometheus:rw
-       - ./prometheus-config/:/etc/prometheus:rw
+       - ./prometheus-config/:/etc/prometheus
       ports:
        - "9090:9090"
       networks:
