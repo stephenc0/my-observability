@@ -35,7 +35,7 @@ add prometheus instance as a grafana datasource
 
 
 ## defaults
-urls as configured will be:  
+urls as configured in defaults will be:  
 
 grafana: http://localhost:3000/  
 prom: http://localhost:9090/
