@@ -1,7 +1,8 @@
 # my-observability lab  
 This is a docker compose project intended to for use as a monitoring/observability lab  
 Configuration of mock API endpoints and clients is done within compose.yaml  
-
+Supported platforms: ARM64 on Mac silicon  
+  
 ## setup
 run ./setup_lab.sh first  
 
@@ -45,3 +46,20 @@ api endpoints support configuration of:
 
 simulated latency  
 parameter: BASE_LATENCY, int (seconds), 0.000-n
+
+## additional repos
+https://github.com/stephenc0/testapi
+https://github.com/stephenc0/testclient
+https://github.com/stephenc0/dsloth
+https://github.com/stephenc0/fileserver
+
+## docker images
+https://hub.docker.com/r/stephencarnold/testapi
+https://hub.docker.com/r/stephencarnold/testclient
+https://hub.docker.com/r/stephencarnold/dsloth
+https://hub.docker.com/r/stephencarnold/alpine
+https://hub.docker.com/r/stephencarnold/prom-node-exporter
+https://hub.docker.com/r/stephencarnold/cadvisor
+https://hub.docker.com/r/prom/prometheus
+https://hub.docker.com/r/grafana/grafana
+
