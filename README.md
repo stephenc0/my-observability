@@ -25,7 +25,7 @@ Virtual Machine Type: VZ
   
   
 ## setup
-1. run:  ```chmod +x ./setup_lab.sh && ./setup_lab.sh```
+1. run:  ```./setup_lab.sh```
 2. modify **compose.yaml** to suite your needs
 3. modify **prometheus-config/prometheus.yaml** to suite your needs
 4. modify **sloth_data/slothtemplate.yml** to suite your needs
