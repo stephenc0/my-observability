@@ -44,4 +44,4 @@ python application that simulates API endpoints for use by mockClient instances.
 api endpoints support configuration of:  
 
 simulated latency  
-parameter: BASE_LATENCY, int, 0.0-n
+parameter: BASE_LATENCY, int (seconds), 0.000-n
