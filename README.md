@@ -27,7 +27,7 @@ python application that simulates API client traffic for use against the mockAPI
 clients support configuration of:  
 
 request rate  
-parameter: REQUEST_RATE, int, 0-n  
+parameter: REQUEST_RATE, int (requests/second), 0-n  
   
 success rate  
 parameter SUCCESS_RATE, percent, 0-100  
