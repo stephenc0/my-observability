@@ -6,6 +6,9 @@ Supported platforms: ARM64 on Mac silicon
 ## requirements
 Rancher Desktop Installed with the following configuration options set:  
 
+Preferences >> Container Engine >> General  
+Container Engine: dockerd  
+  
 Preferences >> Application >> General  
 Administrative Access enabled  
   
