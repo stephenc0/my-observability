@@ -23,6 +23,7 @@ grafana: http://localhost:3000/
 prom: http://localhost:9090/
 
 ## mockClient
+python application that simulates API client traffic for use against the mockAPI endpoints.  
 clients support configuration of:  
 
 request rate  
@@ -35,10 +36,11 @@ success rate random variance
 parameter VARIANCE, percent (x100), 0.000-1.000  
   
 simulated daily and weekly seasonality  
-parameter DAY_LOAD_FACTOR,, magnitude (sigmoid), 0.000-1.000  
+parameter DAY_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
 parameter WEEK_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
 
 ## mockAPI
+python application that simulates API endpoints for use by mockClient instances.  
 api endpoints support configuration of:  
 
 simulated latency  
