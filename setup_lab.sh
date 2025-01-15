@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# Function to check if a service is responding
+check_service() {
+    local service=$1
+    local url=$2
+    local max_attempts=12  # 60 seconds total
+    local attempt=1
+
+    echo "Checking $service health..."
+    while [ $attempt -le $max_attempts ]; do
+        if curl -s -f "$url" >/dev/null 2>&1; then
+            echo " ✓ $service is up and running"
+            return 0
+        fi
+        echo " → Waiting for $service... (attempt $attempt/$max_attempts)"
+        sleep 5
+        attempt=$((attempt + 1))
+    done
+    echo "✕ Error: $service failed to respond after 60 seconds"
+    return 1
+}
+
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
     echo "Error: Docker is not running or not installed"
@@ -16,14 +37,20 @@ mkdir -p prometheus-data
 
 # Start Docker containers in detached mode
 echo "Starting docker compose project"
-docker compose up -d
+if docker compose up -d; then
+    echo " ✓ Project started successfully"
+    
+    grafanaurl="http://localhost:3000"
+    promurl="http://localhost:9090"
 
-# Make scripts executable
-chmod +x reset_prom_data.sh
-chmod +x update_alerts.sh
-chmod +x wipe_lab.sh
-
-echo "Made scripts executable:"
-echo "- reset_prom_data.sh"
-echo "- update_alerts.sh"
-echo "- wipe_lab.sh"
+    # Check services health
+    check_service "Prometheus" "$promurl" || exit 1
+    check_service "Grafana" "$grafanaurl" || exit 1
+    
+    echo "✓ Lab is up and running!"
+    echo "i Prometheus url: $promurl"
+    echo "i Grafana url: $grafanaurl"
+else
+    echo "Error: Failed to start Docker containers"
+    exit 1
+fi
