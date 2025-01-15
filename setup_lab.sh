@@ -8,15 +8,15 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 # Create directories for the observability project
+echo "Creating container volume directories"
 mkdir -p grafana-data
 mkdir -p grafana-provisioning
 mkdir -p jenkins-data
 mkdir -p prometheus-data
 
 # Start Docker containers in detached mode
+echo "Starting docker compose project"
 docker compose up -d
-
-echo "Docker containers started in detached mode"
 
 # Make scripts executable
 chmod +x reset_prom_data.sh
