@@ -43,7 +43,9 @@ select "Prometheus"
 Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
   
-SLOTH default dashboards available [here (source)](https://sloth.dev/introduction/dashboards/?h=dashboards) or [here (local)](/dashboards)
+SLOTH default dashboards available [here (source)](https://sloth.dev/introduction/dashboards/?h=dashboards) or [here (local)](/dashboards)  
+cadvisor default dashboard available [here (source)](https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/) or [here (local)](/dashboards)  
+
   
 ## guides
 [importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
