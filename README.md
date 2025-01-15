@@ -52,6 +52,13 @@ cadvisor default dashboard available [here (source)](https://grafana.com/grafana
 [SLOTH Getting Started](https://sloth.dev/introduction/)  
 [SLO as a Service using SLOTH](https://medium.com/@jibinrt/slo-as-a-service-using-sloth-87e45926bc94)  
 
+## lab web urls
+urls as configured in defaults will be:  
+
+grafana: http://localhost:3000/  
+prometheus: http://localhost:9090/
+
+***note: Containers use container_name:port for communication within the same Docker network due to Docker's internal DNS, while the host (your computer) uses localhost:port to access container ports mapped to the host's ports***
 
 ## scripts
 ### ./setup_lab.sh
@@ -81,12 +88,6 @@ clears stored prometheus data:
 - stops prometheus container  
 - clears prometheus-data directory  
 - restarts prometheus container  
-  
-## defaults
-urls as configured in defaults will be:  
-
-grafana: http://localhost:3000/  
-prom: http://localhost:9090/
 
 ## mockClient
 python application that simulates API client traffic for use against the mockAPI endpoints.  
