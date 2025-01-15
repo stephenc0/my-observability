@@ -24,6 +24,7 @@ prom: http://localhost:9090/
 
 ## mockClient
 clients support configuration of:  
+
 request rate  
 parameter: REQUEST_RATE, int, 0-n  
   
@@ -39,5 +40,6 @@ parameter WEEK_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000
 
 ## mockAPI
 api endpoints support configuration of:  
-simulated latency 
+
+simulated latency  
 parameter: BASE_LATENCY, int, 0.0-n
