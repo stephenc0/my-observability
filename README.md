@@ -1,7 +1,7 @@
 # my-observability lab  
 This is a docker compose project intended to for use as a monitoring/observability lab  
 Configuration of mock API endpoints and clients is done within compose.yaml  
-Supported platforms: ARM64 on Mac silicon  
+Supported platforms: ARM64 on Apple silicon  
 
 ## requirements
 Rancher Desktop Installed with the following configuration options set:  
