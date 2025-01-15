@@ -47,8 +47,8 @@ SLOTH default dashboards available [here (source)](https://sloth.dev/introductio
 
 
 ## guides
-[importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)
-[adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)
+[importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
+[adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
 
 ## defaults
 urls as configured in defaults will be:  
