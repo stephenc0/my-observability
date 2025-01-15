@@ -1,7 +1,7 @@
 # my-observability lab  
 This is a docker compose project intended to for use as a monitoring/observability lab  
-It includes a local grafana instance, a local prometheus instance, a cadvisor instance, and mock API endpoints/clients to scrape data from
-It also includes a dockerized instance of [sloth](https://github.com/slok/sloth) to generate SLO/Alert rule files for use by prometheus
+It includes a local grafana instance, a local prometheus instance, a cadvisor instance, and mock API endpoints/clients to scrape data from  
+It also includes a dockerized instance of [sloth](https://github.com/slok/sloth) to generate SLO/Alert rule files for use by prometheus  
 
 Configuration of mock API endpoints and clients is done within compose.yaml  
 Supported platforms: ARM64 on Apple silicon  
