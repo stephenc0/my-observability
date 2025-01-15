@@ -47,9 +47,9 @@ if docker compose up -d; then
     check_service "Prometheus" "$promurl" || exit 1
     check_service "Grafana" "$grafanaurl" || exit 1
     
-    echo "✓ Lab is up and running!"
-    echo "i Prometheus url: $promurl"
-    echo "i Grafana url: $grafanaurl"
+    echo " ✓ Lab is up and running!"
+    echo " i Prometheus url: $promurl"
+    echo " i Grafana url: $grafanaurl"
 else
     echo "Error: Failed to start Docker containers"
     exit 1
