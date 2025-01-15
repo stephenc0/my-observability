@@ -48,18 +48,18 @@ simulated latency
 parameter: BASE_LATENCY, int (seconds), 0.000-n
 
 ## additional repos
-https://github.com/stephenc0/testapi
-https://github.com/stephenc0/testclient
-https://github.com/stephenc0/dsloth
-https://github.com/stephenc0/fileserver
+https://github.com/stephenc0/testapi  
+https://github.com/stephenc0/testclient  
+https://github.com/stephenc0/dsloth  
+https://github.com/stephenc0/fileserver  
 
 ## docker images
-https://hub.docker.com/r/stephencarnold/testapi
-https://hub.docker.com/r/stephencarnold/testclient
-https://hub.docker.com/r/stephencarnold/dsloth
-https://hub.docker.com/r/stephencarnold/alpine
-https://hub.docker.com/r/stephencarnold/prom-node-exporter
-https://hub.docker.com/r/stephencarnold/cadvisor
-https://hub.docker.com/r/prom/prometheus
-https://hub.docker.com/r/grafana/grafana
+https://hub.docker.com/r/stephencarnold/testapi  
+https://hub.docker.com/r/stephencarnold/testclient  
+https://hub.docker.com/r/stephencarnold/dsloth  
+https://hub.docker.com/r/stephencarnold/alpine  
+https://hub.docker.com/r/stephencarnold/prom-node-exporter  
+https://hub.docker.com/r/stephencarnold/cadvisor  
+https://hub.docker.com/r/prom/prometheus  
+https://hub.docker.com/r/grafana/grafana  
 
