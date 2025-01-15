@@ -44,8 +44,14 @@ cadvisor default dashboard available [here (source)](https://grafana.com/grafana
 
   
 ## guides
-[importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
-[adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
+[Importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
+[Adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
+[Intro to PromQL](https://grafana.com/blog/2020/02/04/introduction-to-promql-the-prometheus-query-language/)
+[Querying Basics (prometheus)](https://prometheus.io/docs/prometheus/latest/querying/basics/)
+[Query and Transform Data (grafana)](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/)
+[SLOTH Getting Started](https://sloth.dev/introduction/)
+[SLO as a Service using SLOTH](https://medium.com/@jibinrt/slo-as-a-service-using-sloth-87e45926bc94)
+
 
 ## scripts
 ### ./setup_lab.sh
