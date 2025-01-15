@@ -44,12 +44,40 @@ Connection: Prometheus server URL: http://prometheus:9090
 leave all other settings at default and select 'Save and test'  
   
 SLOTH default dashboards available [here (source)](https://sloth.dev/introduction/dashboards/?h=dashboards) or [here (local)](/dashboards)
-
-
+  
 ## guides
 [importing grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/)  
 [adding grafana datasource](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source)  
 
+## scripts
+### ./setup_lab.sh
+sets up lab:  
+
+creates directories  
+mark other scripts as executable  
+starts the docker compose project  
+
+### ./update_alerts.sh
+generates SLO rules and alerts:  
+
+- calls the dsloth container against sloth-data/slothtemplate.yml to generate slothrules.yml  
+- splits slothrules.yml by service into new rule files for each  
+- copies new rule files into prometheus-config/  
+- adds new rule file names to prometheus.yml under "rule_files:" element  
+- restarts prometheus container  
+  
+### ./wipe_lab.sh
+resets lab to default state:  
+
+- clears all configuration directories  
+
+### ./reset_prom_data.sh
+clears stored prometheus data:  
+
+- stops prometheus container  
+- clears prometheus-data directory  
+- restarts prometheus container  
+  
 ## defaults
 urls as configured in defaults will be:  
 
@@ -60,16 +88,16 @@ prom: http://localhost:9090/
 python application that simulates API client traffic for use against the mockAPI endpoints.  
 clients support configuration of:  
 
-request rate  
+- request rate  
 parameter: REQUEST_RATE, int (requests/second), 0-n  
   
-success rate  
+- success rate  
 parameter SUCCESS_RATE, percent, 0-100  
   
-success/fail repeat chance  
+- success/fail repeat chance  
 parameter VARIANCE, percent (x100), 0.000-1.000  
   
-simulated daily and weekly seasonality  
+- simulated daily and weekly seasonality  
 parameter DAY_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
 parameter WEEK_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000  
 
@@ -77,22 +105,22 @@ parameter WEEK_LOAD_FACTOR, magnitude (sigmoid), 0.000-1.000
 python application that simulates API endpoints for use by mockClient instances.  
 api endpoints support configuration of:  
 
-simulated latency  
+- simulated latency  
 parameter: BASE_LATENCY, int (seconds), 0.000-n
 
 ## additional repos
-https://github.com/stephenc0/testapi  
-https://github.com/stephenc0/testclient  
-https://github.com/stephenc0/dsloth  
-https://github.com/stephenc0/fileserver  
+- https://github.com/stephenc0/testapi  
+- https://github.com/stephenc0/testclient  
+- https://github.com/stephenc0/dsloth  
+- https://github.com/stephenc0/fileserver  
 
 ## docker images
-https://hub.docker.com/r/stephencarnold/testapi  
-https://hub.docker.com/r/stephencarnold/testclient  
-https://hub.docker.com/r/stephencarnold/dsloth  
-https://hub.docker.com/r/stephencarnold/alpine  
-https://hub.docker.com/r/stephencarnold/prom-node-exporter  
-https://hub.docker.com/r/stephencarnold/cadvisor  
-https://hub.docker.com/r/prom/prometheus  
-https://hub.docker.com/r/grafana/grafana  
+- https://hub.docker.com/r/stephencarnold/testapi  
+- https://hub.docker.com/r/stephencarnold/testclient  
+- https://hub.docker.com/r/stephencarnold/dsloth  
+- https://hub.docker.com/r/stephencarnold/alpine  
+- https://hub.docker.com/r/stephencarnold/prom-node-exporter  
+- https://hub.docker.com/r/stephencarnold/cadvisor  
+- https://hub.docker.com/r/prom/prometheus  
+- https://hub.docker.com/r/grafana/grafana  
 
