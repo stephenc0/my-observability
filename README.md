@@ -2,6 +2,19 @@
 This is a docker compose project intended to for use as a monitoring/observability lab  
 Configuration of mock API endpoints and clients is done within compose.yaml  
 Supported platforms: ARM64 on Mac silicon  
+
+## requirements
+Rancher Desktop Installed with the following configuration options set:  
+
+Preferences >> Application >> General  
+Administrative Access enabled  
+  
+Preferences >> Virtual Machine >> Volumes  
+Mount Type: virtiofs  
+  
+Preferences >> Virtual Machine >> Emulation  
+Virtual Machine Type: VZ  
+  
   
 ## setup
 run below command:  
