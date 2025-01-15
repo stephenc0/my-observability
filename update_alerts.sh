@@ -114,3 +114,6 @@ if ! docker compose restart prometheus; then
 fi
 
 echo "Prometheus container restarted successfully."
+
+rm sloth-data/slothrules.yml
+echo "Cleaned up slothrules.yml"
