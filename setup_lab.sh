@@ -7,7 +7,7 @@ check_service() {
     local max_attempts=12  # 60 seconds total
     local attempt=1
 
-    echo "Checking $service health..."
+    echo " i Checking $service health..."
     while [ $attempt -le $max_attempts ]; do
         if curl -s -f "$url" >/dev/null 2>&1; then
             echo " ✓ $service is up and running"
@@ -17,26 +17,26 @@ check_service() {
         sleep 5
         attempt=$((attempt + 1))
     done
-    echo "✕ Error: $service failed to respond after 60 seconds"
+    echo " ✕ Error: $service failed to respond after 60 seconds"
     return 1
 }
 
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
-    echo "Error: Docker is not running or not installed"
-    echo "Please make sure Docker is installed and running before executing this script"
+    echo " x Error: Docker is not running or not installed"
+    echo "   Please make sure Docker is installed and running before executing this script"
     exit 1
 fi
 
 # Create directories for the observability project
-echo "Creating container volume directories"
+echo " i Creating container volume directories"
 mkdir -p grafana-data
 mkdir -p grafana-provisioning
 mkdir -p jenkins-data
 mkdir -p prometheus-data
 
 # Start Docker containers in detached mode
-echo "Starting docker compose project"
+echo " i Starting docker compose project"
 if docker compose up -d; then
     echo " ✓ Project started successfully"
     
@@ -51,6 +51,6 @@ if docker compose up -d; then
     echo " i Prometheus url: $promurl"
     echo " i Grafana url: $grafanaurl"
 else
-    echo "Error: Failed to start Docker containers"
+    echo " x Error: Failed to start Docker containers"
     exit 1
 fi
