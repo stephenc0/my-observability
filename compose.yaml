@@ -105,8 +105,8 @@ services:
         VARIANCE: 0.5
         SUCCESS_ENDPOINT: /success
         FAIL_ENDPOINT: /fail
-        DAY_LOAD_FACTOR: 0.8  # Peak load variation during day
-        WEEK_LOAD_FACTOR: 0 # Peak load variation during week
+        DAY_LOAD_FACTOR: 0.8
+        WEEK_LOAD_FACTOR: 0
       networks:
         - internal
       restart: always
@@ -251,7 +251,7 @@ services:
         timeout: 10s
         retries: 3
       environment:
-        BASE_LATENCY: 0.042    # 100ms base latency
+        BASE_LATENCY: 0.042
       networks:
        - internal
       restart: always
@@ -268,7 +268,7 @@ services:
         timeout: 10s
         retries: 3
       environment:
-        BASE_LATENCY: 0.045    # 20ms base latency
+        BASE_LATENCY: 0.045
       networks:
        - internal
       restart: always
@@ -285,7 +285,7 @@ services:
         timeout: 10s
         retries: 3
       environment:
-        BASE_LATENCY: 0.03   # 100ms base latency
+        BASE_LATENCY: 0.03
       networks:
        - internal
       restart: always

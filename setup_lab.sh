@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if Docker is running
+if ! docker info > /dev/null 2>&1; then
+    echo "Error: Docker is not running or not installed"
+    echo "Please make sure Docker is installed and running before executing this script"
+    exit 1
+fi
+
 # Create directories for the observability project
 mkdir -p grafana-data
 mkdir -p grafana-provisioning
