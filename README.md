@@ -58,7 +58,7 @@ urls as configured in defaults will be:
 grafana: http://localhost:3000/  
 prometheus: http://localhost:9090/
 
-***note: Containers use container_name:port for communication within the same Docker network due to Docker's internal DNS, while the host (your computer) uses localhost:port to access container ports mapped to the host's ports***
+***note: containers use container_name:port for communication within the same Docker network due to Docker's internal DNS, while the host (your computer) uses localhost:port to access container ports mapped to the host's ports***
 
 ## scripts
 ### ./setup_lab.sh
