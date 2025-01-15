@@ -116,4 +116,4 @@ fi
 echo "Prometheus container restarted successfully."
 
 rm sloth-data/slothrules.yml
-echo "Cleaned up slothrules.yml"
+echo "Removed temp files"
