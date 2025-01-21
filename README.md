@@ -25,15 +25,15 @@ Virtual Machine Type: VZ
   
   
 ## setup
-1. run:  ```./setup_lab.sh```
-2. modify **compose.yaml** to suite your needs
-3. modify **prometheus-config/prometheus.yaml** to suite your needs
+1. modify **compose.yaml** to suite your needs
+2. modify **prometheus-config/prometheus.yaml** to suite your needs
+3. run:  ```./setup_lab.sh```
 4. modify **sloth_data/slothtemplate.yml** to suite your needs
 5. run:  ```./update_alerts.sh```
 6. login to grafana with default credentials ("**admin**":"**admin**")  
 create new grafana password  
 
-7. add prometheus instance as a grafana datasource  
+8. add prometheus instance as a grafana datasource  
 Home >> Connections >> Data sources >> Add new datasource  
 select "Prometheus"  
 Connection: Prometheus server URL: http://prometheus:9090
